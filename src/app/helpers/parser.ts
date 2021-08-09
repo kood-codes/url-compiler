@@ -1,13 +1,13 @@
+import { Ast, AstNode } from "../models";
 import {
-  isSlash,
-  isColon,
   isAmpersand,
+  isColon,
   isDelimiter,
   isEqual,
   isHash,
   isQuery,
+  isSlash,
 } from "./helpers";
-import { Ast, AstNode } from "../models";
 
 export function parser(tokens: AstNode[]) {
   const root: Ast = {
@@ -97,7 +97,7 @@ export function parser(tokens: AstNode[]) {
         ) {
           root.body.push({
             type: "Port",
-            value: parseInt(tokens?.shift()?.value || '', 10),
+            value: parseInt(tokens?.shift()?.value || "", 10),
           });
         }
         continue;

@@ -1,4 +1,8 @@
-<p-organizationChart [value]="ast" styleClass="company" *ngIf="!showModified else modifiedTmpl">
+<p-organizationChart
+  [value]="ast"
+  styleClass="company"
+  *ngIf="!showModified; else modifiedTmpl"
+>
   <ng-template let-node pTemplate="default">
     <div class="ast-node" [ngClass]="{ modified: node.modified }" #astNode>
       <div *ngIf="!node.value">
@@ -27,4 +31,3 @@
     </ng-template>
   </p-organizationChart>
 </ng-template>
-

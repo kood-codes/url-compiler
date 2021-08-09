@@ -1,16 +1,15 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { ParserComponent } from './parser.component';
+import { ParserComponent } from "./parser.component";
 
-describe('ParserComponent', () => {
+describe("ParserComponent", () => {
   let component: ParserComponent;
   let fixture: ComponentFixture<ParserComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ParserComponent ]
-    })
-    .compileComponents();
+      declarations: [ParserComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -19,7 +18,7 @@ describe('ParserComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

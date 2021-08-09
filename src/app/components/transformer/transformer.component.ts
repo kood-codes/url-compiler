@@ -1,18 +1,17 @@
 import {
-  Component,
-  OnInit,
-  Input,
-  Output,
   AfterViewInit,
-  ViewChildren,
-  QueryList,
+  Component,
   ElementRef,
   EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  QueryList,
+  ViewChildren,
   ViewEncapsulation,
 } from "@angular/core";
 import { TimelineLite } from "gsap";
-import { transformer, mapAstToChart } from "src/app/helpers";
-import { Ast, AstNode, Chart } from "src/app/models";
+import { mapAstToChart } from "src/app/helpers";
 
 @Component({
   selector: "url-transformer",

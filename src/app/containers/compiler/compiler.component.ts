@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Ast, AstNode } from "src/app/models";
-import { tokenizer, generator, parser, transformer } from "../../helpers";
+import { generator, parser, tokenizer, transformer } from "../../helpers";
 
 export enum CompilerState {
   IDLE = "IDLE",

@@ -1,5 +1,5 @@
 import { Ast, AstNode } from "../models";
-import { COLON, SLASH, EQUAL, HASH } from "./helpers";
+import { COLON, EQUAL, HASH, SLASH } from "./helpers";
 
 export function generator(ast: Ast) {
   let modifiedUrl = "";

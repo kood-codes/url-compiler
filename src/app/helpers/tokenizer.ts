@@ -1,5 +1,4 @@
-import { AstNode } from "../models";
-import { COLON, SLASH, QUERY, EQUAL, AMPERSAND, HASH } from "./helpers";
+import { AMPERSAND, COLON, EQUAL, HASH, QUERY, SLASH } from "./helpers";
 
 const delimiters = [COLON, SLASH, QUERY, EQUAL, AMPERSAND, HASH];
 

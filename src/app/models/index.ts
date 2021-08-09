@@ -7,8 +7,8 @@ export interface AstNode extends Ast {
   value: any;
   modified?: boolean;
   position?: {
-      start: number;
-      end: number;
+    start: number;
+    end: number;
   };
 }
 

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, AfterViewInit } from "@angular/core";
+import { AfterViewInit, Component, Input } from "@angular/core";
 import { TimelineMax } from "gsap";
 
 @Component({

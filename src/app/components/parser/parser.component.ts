@@ -1,15 +1,15 @@
 import {
-  Component,
-  OnInit,
-  Input,
-  ViewEncapsulation,
-  ViewChildren,
-  QueryList,
-  ElementRef,
   AfterViewInit,
   ChangeDetectorRef,
+  Component,
+  ElementRef,
+  Input,
+  OnInit,
+  QueryList,
+  ViewChildren,
+  ViewEncapsulation,
 } from "@angular/core";
-import { TweenMax, TimelineLite } from "gsap";
+import { TimelineLite } from "gsap";
 import { mapAstToChart } from "src/app/helpers";
 
 @Component({
@@ -33,7 +33,7 @@ export class ParserComponent implements OnInit, AfterViewInit {
     this.parse();
   }
 
-  parse() {;
+  parse() {
     const nodes: any = document.querySelectorAll(".p-organizationchart-table");
     const tl = new TimelineLite();
 

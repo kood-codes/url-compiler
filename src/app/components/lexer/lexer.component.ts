@@ -1,19 +1,18 @@
 import {
-  Component,
-  OnInit,
-  Input,
-  ViewEncapsulation,
-  ViewChildren,
-  QueryList,
-  ElementRef,
   AfterViewInit,
-  ViewChild,
-  ChangeDetectorRef,
-  ViewContainerRef,
+  Component,
+  ElementRef,
+  Input,
+  OnInit,
+  QueryList,
   Renderer2,
+  ViewChild,
+  ViewChildren,
+  ViewContainerRef,
+  ViewEncapsulation,
 } from "@angular/core";
+import { TimelineLite, TweenMax } from "gsap";
 import { tokenizer } from "../../helpers";
-import { TimelineLite, Back, Power1, SlowMo, TweenLite, TweenMax } from "gsap";
 
 @Component({
   selector: "url-lexer",
@@ -63,7 +62,9 @@ export class LexerComponent implements OnInit, AfterViewInit {
   }
 
   tween(): void {
-    const btnArr: Element[] = this.tokenArray.map((btn: ElementRef<any>) => btn.nativeElement);
+    const btnArr: Element[] = this.tokenArray.map(
+      (btn: ElementRef<any>) => btn.nativeElement
+    );
     console.log(btnArr);
 
     const coord = this.lexerElem.nativeElement.getBoundingClientRect();

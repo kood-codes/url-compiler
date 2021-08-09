@@ -12,8 +12,8 @@
   &.modified {
     background-color: var(--parser-modified-color);
     .ast-node__label {
-      background: var(--parser-modified-color);;
-      color: var(--main-text-color);;
+      background: var(--parser-modified-color);
+      color: var(--main-text-color);
     }
     .ast-node__value {
       background: var(--main-bg-color);
