@@ -1,0 +1,78 @@
+:root {
+  --main-bg-color: #263238;
+  --main-text-color:#fff;
+  --lexer-bg-color: #7aa8f0;
+  --parser-bg-color: #7bc2a8;
+  --parser-modified-color: #EB9F86;
+}
+
+/* You can add global styles to this file, and also import other style files */
+@import "~codemirror/lib/codemirror";
+@import "~codemirror/theme/material";
+@import "./app/components/lexer/lexer.component";
+@import "./app/components/parser/parser.component";
+@import "./app/components/transformer/transformer.component";
+@import "./app/components/generator/generator.component";
+@import "./app/containers/compiler/compiler.component";
+
+
+
+.page-title {
+  font-size: 1.75rem;
+  text-align: center;
+  letter-spacing: 5px;
+  display: flex;
+  justify-content: center;
+}
+
+body {
+  color: var(--main-text-color);
+  background: var(--main-bg-color);
+}
+
+
+.btn-outline-primary {
+  color: var(--lexer-bg-color);
+  border-color: var(--lexer-bg-color);
+
+  &:hover, &:active, &:focus {
+    color: var(--main-text-color);
+    background-color: var(--lexer-bg-color) !important;
+    border-color: var(--lexer-bg-color);
+    box-shadow: none !important;
+  }
+}
+
+.btn-outline-success {
+  color: var(--parser-bg-color);
+  border-color: var(--parser-bg-color);
+
+  &:hover, &:active, &:focus {
+    box-shadow: none !important;
+    color: var(--main-text-color);
+    background-color: var(--parser-bg-color) !important;
+    border-color: var(--parser-bg-color);
+  }
+}
+
+.btn-outline-danger {
+  color: var(--parser-modified-color);
+  border-color: var(--parser-modified-color);
+
+  &:hover, &:active, &:focus {
+    box-shadow: none !important;
+    color: var(--main-text-color);
+    background-color: var(--parser-modified-color) !important;
+    border-color: var(--parser-modified-color) !important;
+  }
+}
+
+.form-control {
+  color: var(--main-text-color);
+  background-color: var(--main-bg-color);
+
+  &:focus, &:active {
+    color: var(--main-text-color);;
+    background-color: var(--main-bg-color);
+  }
+}

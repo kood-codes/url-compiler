@@ -1,0 +1,27 @@
+<p-organizationChart [value]="ast" styleClass="company" *ngIf="!show">
+  <ng-template let-node pTemplate="default">
+    <div class="ast-node" [ngClass]="{ modified: node.modified }" #astNode>
+      <div *ngIf="!node.value">
+        <div class="ast-node__parent">{{ node.label }}</div>
+      </div>
+      <div *ngIf="node.value">
+        <div class="ast-node__label">{{ node.label }}</div>
+        <div class="ast-node__value">{{ node.value }}</div>
+      </div>
+    </div>
+  </ng-template>
+</p-organizationChart>
+
+<p-organizationChart [value]="modifiedAst" styleClass="company" *ngIf="show">
+  <ng-template let-node pTemplate="default">
+    <div class="ast-node" [ngClass]="{ modified: node.modified }">
+      <div *ngIf="!node.value">
+        <div class="ast-node__parent">{{ node.label }}</div>
+      </div>
+      <div *ngIf="node.value">
+        <div class="ast-node__label">{{ node.label }}</div>
+        <div class="ast-node__value">{{ node.value }}</div>
+      </div>
+    </div>
+  </ng-template>
+</p-organizationChart>

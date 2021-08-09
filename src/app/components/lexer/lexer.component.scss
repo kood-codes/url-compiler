@@ -1,0 +1,73 @@
+.lexer, .parser {
+  min-width: 100px;
+  max-width: 250px;
+  min-height: 250px;
+  border: 2px dashed var(--lexer-bg-color);
+  margin: auto;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 50px;
+}
+
+.animate {
+  transform: translate(calc(50vw - 50px), -50px);
+  top: 20px;
+}
+
+.token-container {
+  display: flex;
+  height: 60px;
+
+  .token {
+    border-radius: 10px;
+    padding: 5px 10px;
+    margin: 5px;
+    position: absolute;
+    text-align: center;
+  }
+}
+
+.tokenText {
+  position: relative;
+  white-space: nowrap;
+  font-size: 2.5rem;
+}
+
+.scanner {
+  display: inline-block;
+  border: 5px dotted var(--lexer-bg-color);
+  height: 3.75rem;
+  width: 1.85rem;
+  position: absolute;
+  left: 0px;
+  margin-left: -5px;
+}
+
+.url {
+  position: relative;
+}
+
+.clone {
+  display: block;
+  width: 100%;
+  border-bottom: 2px dashed var(--lexer-bg-color);
+  padding: 8px;
+  text-align: center;
+  font-size: 16px;
+  opacity: 0;
+  font-weight: bold;
+}
+
+.tokenText.identifier.clone::before {
+  content: "I";
+  position: absolute;
+  left: -12px;
+}
+
+.tokenText.delimiter.clone::before {
+  content: "D";
+  position: absolute;
+  left: -15px;
+}

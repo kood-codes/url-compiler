@@ -1,0 +1,24 @@
+.final-url {
+  text-align: center;
+}
+
+.upperWrap, .lowerWrap {
+  overflow: hidden;
+  height: 40px;
+  line-height: 40px;
+  font-weight: 700;
+}
+
+.upper {
+  font-size: 1rem;
+  text-transform: uppercase;
+}
+
+.lower {
+  font-size: 2rem;
+}
+
+.line {
+  height: 1px;
+  background: var(--main-text-color);
+}
