@@ -118,8 +118,18 @@
               "devServerTarget": "url-compiler:serve:production"
             }
           }
+        },
+        "deploy": {
+          "builder": "angular-cli-ghpages:deploy",
+          "options": {
+            "baseHref": "",
+            "name": "kood-codes",
+            "email": "code@kood.dev",
+            "cname": "url-compiler.kood.dev"
+          }
         }
       }
-    }},
+    }
+  },
   "defaultProject": "url-compiler"
 }
