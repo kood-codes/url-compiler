@@ -1,9 +1,10 @@
+import { Ast, AstNode } from "../models";
 import { COLON, SLASH, EQUAL, HASH } from "./helpers";
 
-export function generator(ast) {
+export function generator(ast: Ast) {
+  let modifiedUrl = "";
   if (ast.type === "url") {
-    let modifiedUrl = "";
-    ast.body.forEach((node) => {
+    ast.body.forEach((node: AstNode) => {
       switch (node.type) {
         case "Protocol":
           modifiedUrl += node.value + COLON + SLASH + SLASH;
@@ -32,6 +33,6 @@ export function generator(ast) {
           break;
       }
     });
-    return modifiedUrl;
   }
+  return modifiedUrl;
 }

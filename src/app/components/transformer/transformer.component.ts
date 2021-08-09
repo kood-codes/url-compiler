@@ -12,6 +12,7 @@ import {
 } from "@angular/core";
 import { TimelineLite } from "gsap";
 import { transformer, mapAstToChart } from "src/app/helpers";
+import { Ast, AstNode, Chart } from "src/app/models";
 
 @Component({
   selector: "url-transformer",
@@ -19,13 +20,13 @@ import { transformer, mapAstToChart } from "src/app/helpers";
   encapsulation: ViewEncapsulation.None,
 })
 export class TransformerComponent implements OnInit, AfterViewInit {
-  @Input() ast: Array<any>;
-  @Input() modifiedAst: Array<any>;
+  @Input() ast!: any;
+  @Input() modifiedAst!: any;
   @Input() visitor: any;
 
   @Output() transform = new EventEmitter();
-  @ViewChildren("astNode") astNodes: QueryList<ElementRef>;
-  show = false;
+  @ViewChildren("astNode") astNodes!: QueryList<ElementRef>;
+  showModified = false;
 
   ngOnInit() {
     this.ast = [mapAstToChart(this.ast)];
@@ -37,10 +38,10 @@ export class TransformerComponent implements OnInit, AfterViewInit {
   }
 
   transformAst() {
-    const nodes: Element[] = this.astNodes.map((btn) => btn.nativeElement);
+    const nodes: Element[] = this.astNodes?.map((btn) => btn.nativeElement);
     const tl = new TimelineLite({
       onComplete: () => {
-        this.show = true;
+        this.showModified = true;
       },
     });
 

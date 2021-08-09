@@ -22,13 +22,13 @@ import { TimelineLite, Back, Power1, SlowMo, TweenLite, TweenMax } from "gsap";
   encapsulation: ViewEncapsulation.None,
 })
 export class LexerComponent implements OnInit, AfterViewInit {
-  @Input() url: string;
+  @Input() url!: string;
   tokens: any;
   tokenArray = [];
   scannerPos = 0;
   scannedTokens = [];
-  @ViewChild("lexer", { static: false }) lexerElem: ElementRef;
-  @ViewChildren("tokenElem") tokenElems: QueryList<ElementRef>;
+  @ViewChild("lexer", { static: false }) lexerElem!: ElementRef<any>;
+  @ViewChildren("tokenElem") tokenElems!: QueryList<ElementRef>;
 
   constructor(private vcRef: ViewContainerRef, private renderer: Renderer2) {}
 
@@ -43,9 +43,9 @@ export class LexerComponent implements OnInit, AfterViewInit {
     const scanner: any = document.querySelector(".scanner");
     const tl = new TimelineLite();
 
-    tokens.forEach((token) => {
+    tokens.forEach((token: Element) => {
       const rect = token.getBoundingClientRect();
-      const length = token.innerText.trim();
+
       tl.fromTo(
         scanner,
         0.1,
@@ -54,7 +54,7 @@ export class LexerComponent implements OnInit, AfterViewInit {
       );
 
       this.scannerPos += rect.width;
-      const cln = token.cloneNode(true);
+      const cln = <Element>token.cloneNode(true);
       cln.classList.add("clone");
       tl.to(cln, 1, { opacity: 1 });
       this.renderer.appendChild(this.lexerElem.nativeElement, cln);
@@ -62,12 +62,8 @@ export class LexerComponent implements OnInit, AfterViewInit {
     tl.to(scanner, 0.1, { opacity: 0 });
   }
 
-  getLeftPostion(node, previous) {
-    return 0;
-  }
-
   tween(): void {
-    const btnArr: Element[] = this.tokenArray.map((btn) => btn.nativeElement);
+    const btnArr: Element[] = this.tokenArray.map((btn: ElementRef<any>) => btn.nativeElement);
     console.log(btnArr);
 
     const coord = this.lexerElem.nativeElement.getBoundingClientRect();
@@ -82,7 +78,7 @@ export class LexerComponent implements OnInit, AfterViewInit {
       },
       {
         y: 0,
-        x: (index, target) => {
+        x: (index: number, target: any) => {
           const currentX = x;
           x += target.getBoundingClientRect().width + 10;
           return currentX;

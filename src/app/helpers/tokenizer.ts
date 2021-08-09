@@ -1,8 +1,9 @@
+import { AstNode } from "../models";
 import { COLON, SLASH, QUERY, EQUAL, AMPERSAND, HASH } from "./helpers";
 
 const delimiters = [COLON, SLASH, QUERY, EQUAL, AMPERSAND, HASH];
 
-export function tokenizer(input) {
+export function tokenizer(input: string): any {
   const tokens = [];
   let current = 0;
 

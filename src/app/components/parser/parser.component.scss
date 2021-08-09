@@ -1,5 +1,9 @@
-.ui-organizationchart-node-content {
+.p-organizationchart-node-content {
   padding: 0 !important;
+}
+
+.p-organizationchart .p-organizationchart-node-content .p-node-toggler {
+  display: none;
 }
 
 .ast-node {

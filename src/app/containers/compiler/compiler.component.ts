@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { Ast, AstNode } from "src/app/models";
 import { tokenizer, generator, parser, transformer } from "../../helpers";
 
 export enum CompilerState {
@@ -18,12 +19,12 @@ export class CompilerComponent implements OnInit {
   url = "https://video.google.in:80/videoplay?lang=en#00h02m30s";
   CompilerState = CompilerState;
   currentState = CompilerState.IDLE;
-  tokens;
+  tokens!: AstNode[];
   startCompile = false;
-  ast;
-  modifiedAst;
-  visitorObj;
-  finalUrl;
+  ast!: Ast;
+  modifiedAst!: Ast;
+  visitorObj: any;
+  finalUrl!: string;
   visitor = `{
   QueryParamater(node) {
     if ((node.body.name === "lang") && (node.body.value === "en")) {

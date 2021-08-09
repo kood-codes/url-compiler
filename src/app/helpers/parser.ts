@@ -7,9 +7,10 @@ import {
   isHash,
   isQuery,
 } from "./helpers";
+import { Ast, AstNode } from "../models";
 
-export function parser(tokens) {
-  const root = {
+export function parser(tokens: AstNode[]) {
+  const root: Ast = {
     type: "url",
     body: [],
   };
@@ -18,7 +19,7 @@ export function parser(tokens) {
 
   while (tokens.length) {
     token = tokens.shift();
-    if (token.type === "identifier") {
+    if (token?.type === "identifier") {
       if (
         tokens[0] &&
         isColon(tokens[0]) &&
@@ -37,7 +38,7 @@ export function parser(tokens) {
         let domain;
         const sections = token.value.split(".");
         let tld = sections.pop();
-        if (tld.length === 2 && sections[sections.length - 1] === "co") {
+        if (tld?.length === 2 && sections[sections.length - 1] === "co") {
           const tldParts = [sections.pop(), tld];
           tld = tldParts.join(".");
         }
@@ -54,7 +55,7 @@ export function parser(tokens) {
             domain,
             tld,
           },
-        });
+        } as Ast);
 
         isHostParsed = true;
       } else {
@@ -67,10 +68,10 @@ export function parser(tokens) {
     } else {
       if (isQuery(token) || isAmpersand(token)) {
         if (isEqual(tokens[1])) {
-          const symbol = token.value;
-          const name = tokens.shift().value;
+          const symbol = token?.value;
+          const name = tokens?.shift()?.value;
           const equal = tokens.shift();
-          const value = tokens.shift().value;
+          const value = tokens?.shift()?.value;
           root.body.push({
             type: "QueryParamater",
             body: {
@@ -83,7 +84,7 @@ export function parser(tokens) {
           root.body.push({
             type: "QueryParamater",
             body: {
-              name: tokens.shift().value,
+              name: tokens?.shift()?.value,
             },
           });
         }
@@ -96,7 +97,7 @@ export function parser(tokens) {
         ) {
           root.body.push({
             type: "Port",
-            value: parseInt(tokens.shift().value, 10),
+            value: parseInt(tokens?.shift()?.value || '', 10),
           });
         }
         continue;
@@ -104,7 +105,7 @@ export function parser(tokens) {
       if (isHash(token)) {
         root.body.push({
           type: "Fragment",
-          value: tokens.shift().value,
+          value: tokens?.shift()?.value,
         });
       }
     }

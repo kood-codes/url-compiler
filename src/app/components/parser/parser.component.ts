@@ -19,9 +19,9 @@ import { mapAstToChart } from "src/app/helpers";
   encapsulation: ViewEncapsulation.None,
 })
 export class ParserComponent implements OnInit, AfterViewInit {
-  @Input() ast: Array<any>;
-  @Input() label: string;
-  @ViewChildren("astNode") astNodes: QueryList<ElementRef>;
+  @Input() ast: any;
+  @Input() label!: string;
+  @ViewChildren("astNode") astNodes!: QueryList<ElementRef>;
 
   constructor(private cdRef: ChangeDetectorRef) {}
 
@@ -33,10 +33,8 @@ export class ParserComponent implements OnInit, AfterViewInit {
     this.parse();
   }
 
-  parse() {
-    //const nodes: Element[] = this.astNodes.map(btn => btn.nativeElement);
-    const lines: any = document.querySelectorAll(".ui-organizationchart-lines");
-    const nodes: any = document.querySelectorAll(".ui-organizationchart-table");
+  parse() {;
+    const nodes: any = document.querySelectorAll(".p-organizationchart-table");
     const tl = new TimelineLite();
 
     tl.staggerFromTo(

@@ -1,3 +1,5 @@
+import { AstNode } from "../models";
+
 export const COLON = ":";
 export const SLASH = "/";
 export const QUERY = "?";
@@ -5,30 +7,30 @@ export const EQUAL = "=";
 export const AMPERSAND = "&";
 export const HASH = "#";
 
-export function isDelimiter(token) {
-  return token.type === "delimiter";
+export function isDelimiter(token?: AstNode) {
+  return token?.type === "delimiter";
 }
 
-export function isSlash(token) {
-  return isDelimiter(token) && token.value === SLASH;
+export function isSlash(token?: AstNode) {
+  return isDelimiter(token) && token?.value === SLASH;
 }
 
-export function isColon(token) {
-  return isDelimiter(token) && token.value === COLON;
+export function isColon(token?: AstNode) {
+  return isDelimiter(token) && token?.value === COLON;
 }
 
-export function isHash(token) {
-  return isDelimiter(token) && token.value === HASH;
+export function isHash(token?: AstNode) {
+  return isDelimiter(token) && token?.value === HASH;
 }
 
-export function isQuery(token) {
-  return isDelimiter(token) && token.value === QUERY;
+export function isQuery(token?: AstNode) {
+  return isDelimiter(token) && token?.value === QUERY;
 }
 
-export function isAmpersand(token) {
-  return isDelimiter(token) && token.value === AMPERSAND;
+export function isAmpersand(token?: AstNode) {
+  return isDelimiter(token) && token?.value === AMPERSAND;
 }
 
-export function isEqual(token) {
-  return isDelimiter(token) && token.value === EQUAL;
+export function isEqual(token?: AstNode) {
+  return isDelimiter(token) && token?.value === EQUAL;
 }

@@ -1,15 +1,17 @@
+import { Ast, AstNode, Chart } from "../models";
+
 export { parser } from "./parser";
 export { generator } from "./generator";
 export { tokenizer } from "./tokenizer";
 export { transformer } from "./transformer";
 
-export function mapAstToChart(ast) {
+export function mapAstToChart(ast: AstNode): Chart {
   const { type, body } = ast;
   return {
     label: type,
     expanded: true,
-    children: body.map((child) => {
-      if (!child.body) {
+    children: body.map((child: AstNode) => {
+      if (!child?.body) {
         return {
           label: child.type,
           value: child.value,
