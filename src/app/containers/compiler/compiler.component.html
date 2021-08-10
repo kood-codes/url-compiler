@@ -1,6 +1,6 @@
 <div class="page-title m-3">SIMPLE://URL.COMPILER</div>
 <div class="row m-3">
-  <div class="col-6">
+  <div class="col-lg-6">
     <div class="form-group">
       <label class="font-weight-bold text-uppercase">Url</label>
       <input class="form-control" type="text" name="url" [(ngModel)]="url" />
@@ -8,42 +8,42 @@
     <div>
       <button
         type="button"
-        class="mx-2 btn btn-outline-primary"
+        class="m-2 btn btn-outline-primary"
         (click)="setState(CompilerState.TOKENIZE)"
       >
         Tokenize
       </button>
       <button
         type="button"
-        class="mx-2 btn btn-outline-success"
+        class="m-2 btn btn-outline-success"
         (click)="setState(CompilerState.PARSE)"
       >
         Parse
       </button>
       <button
         type="button"
-        class="mx-2 btn btn-outline-danger"
+        class="m-2 btn btn-outline-danger"
         (click)="setState(CompilerState.TRANSFORM)"
       >
         Transform
       </button>
       <button
         type="button"
-        class="mx-2 btn btn-outline-secondary"
+        class="m-2 btn btn-outline-secondary"
         (click)="setState(CompilerState.GENERATE)"
       >
         Generate
       </button>
       <button
         type="button"
-        class="mx-2 btn btn-outline-info"
+        class="m-2 btn btn-outline-info"
         (click)="setState(CompilerState.RESET)"
       >
         Reset
       </button>
     </div>
   </div>
-  <div class="col-6">
+  <div class="col-lg-6 d-lg-block">
     <span class="font-weight-bold text-uppercase">Visitor</span>
     <ngx-codemirror
       [(ngModel)]="visitor"
@@ -56,24 +56,25 @@
   </div>
 </div>
 
-<!-- <pre style="color:aliceblue">{{modifiedAst | json}}</pre> -->
-<ng-container [ngSwitch]="true">
-  <ng-container *ngSwitchCase="currentState === CompilerState.TOKENIZE">
-    <url-lexer [url]="url"></url-lexer>
-  </ng-container>
-  <ng-container *ngSwitchCase="currentState === CompilerState.PARSE">
-    <url-parser [ast]="ast" label="Parser"></url-parser>
-  </ng-container>
-  <ng-container *ngSwitchCase="currentState === CompilerState.TRANSFORM">
-    <url-transformer
-      [ast]="ast"
-      [modifiedAst]="modifiedAst"
-      [visitor]="visitorObj"
-      label="Transformer"
-      (transform)="onTransform($event)"
-    ></url-transformer>
-  </ng-container>
-  <ng-container *ngSwitchCase="currentState === CompilerState.GENERATE">
-    <url-generator [url]="finalUrl"></url-generator>
+<ng-container *ngIf="currentState$ | async as currentState">
+  <ng-container [ngSwitch]="currentState">
+    <ng-container *ngSwitchCase="CompilerState.TOKENIZE">
+      <url-lexer [url]="url"></url-lexer>
+    </ng-container>
+    <ng-container *ngSwitchCase="CompilerState.PARSE">
+      <url-parser [ast]="ast" label="Parser"></url-parser>
+    </ng-container>
+    <ng-container *ngSwitchCase="CompilerState.TRANSFORM">
+      <url-transformer
+        [ast]="ast"
+        [modifiedAst]="modifiedAst"
+        [visitor]="visitorObj"
+        label="Transformer"
+        (transform)="onTransform($event)"
+      ></url-transformer>
+    </ng-container>
+    <ng-container *ngSwitchCase="CompilerState.GENERATE">
+      <url-generator [url]="finalUrl"></url-generator>
+    </ng-container>
   </ng-container>
 </ng-container>

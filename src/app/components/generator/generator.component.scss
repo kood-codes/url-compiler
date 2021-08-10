@@ -5,8 +5,7 @@
 .upperWrap,
 .lowerWrap {
   overflow: hidden;
-  height: 40px;
-  line-height: 40px;
+  padding: 5px;
   font-weight: 700;
 }
 
@@ -22,4 +21,10 @@
 .line {
   height: 1px;
   background: var(--main-text-color);
+}
+
+@media (max-width: 767px) {
+  .lower {
+    font-size: 1.2rem;
+  }
 }

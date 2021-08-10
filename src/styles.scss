@@ -75,3 +75,10 @@ body {
     background-color: var(--main-bg-color);
   }
 }
+
+
+@media (max-width: 991px) {
+  .page-title {
+    font-size: 1rem;
+  }
+}

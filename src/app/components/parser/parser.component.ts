@@ -16,7 +16,6 @@ import { mapAstToChart } from "src/app/helpers";
   // tslint:disable-next-line:component-selector
   selector: "url-parser",
   templateUrl: "./parser.component.html",
-  encapsulation: ViewEncapsulation.None,
 })
 export class ParserComponent implements OnInit, AfterViewInit {
   @Input() ast: any;

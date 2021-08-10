@@ -32,7 +32,6 @@
 
 .tokenText {
   position: relative;
-  white-space: nowrap;
   font-size: 2.5rem;
 }
 
@@ -48,6 +47,15 @@
 
 .url {
   position: relative;
+}
+
+@media (max-width: 767px) {
+  .tokenText {
+    font-size: 1.5rem;
+  }
+  .scanner {
+    height: 2.75rem;
+  }
 }
 
 .clone {
