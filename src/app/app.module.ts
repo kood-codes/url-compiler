@@ -1,7 +1,6 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { NgModule } from "@angular/core";
-import { GoogleChartsModule } from "angular-google-charts";
 import { OrganizationChartModule } from "primeng/organizationchart";
 import { CodemirrorModule } from "@ctrl/ngx-codemirror";
 
@@ -24,7 +23,6 @@ import { GeneratorComponent } from "./components/generator/generator.component";
   ],
   imports: [
     BrowserModule,
-    GoogleChartsModule,
     OrganizationChartModule,
     NoopAnimationsModule,
     CodemirrorModule,

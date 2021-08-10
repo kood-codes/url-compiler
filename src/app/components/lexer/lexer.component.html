@@ -1,12 +1,12 @@
 <div class="url ml-3 d-flex justify-content-center">
-  <div class="position-relative" #parent>
+  <div class="position-relative parent" #parent>
+    <div class="scanner" #scanner></div>
     <span
       class="tokenText {{ token.type }}"
       *ngFor="let token of tokens; let i = index"
     >
       {{ token.value }}
     </span>
-    <div class="scanner" #scanner></div>
   </div>
 </div>
 <h3 class="d-flex justify-content-center">Tokens</h3>

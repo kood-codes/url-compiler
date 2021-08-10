@@ -15,7 +15,7 @@ export class GeneratorComponent implements AfterViewInit {
     const upper = <Element>document.querySelector(".upper");
     const lower = <Element>document.querySelector(".lower");
     tl.from(line, 0.5, { scaleX: 0, transformOrigin: "right center" });
-    tl.from(upper, 0.75, { y: 40 }, "text");
-    tl.from(lower, 0.75, { y: -40 }, "text");
+    tl.from(upper, 0.75, { y: 3 * upper.clientHeight }, "text");
+    tl.from(lower, 0.75, { y: -3 * upper.clientHeight }, "text");
   }
 }

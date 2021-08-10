@@ -1,4 +1,5 @@
-import { Component, OnInit } from "@angular/core";
+import { ChangeDetectorRef, Component, OnInit } from "@angular/core";
+import { BehaviorSubject } from "rxjs";
 import { Ast, AstNode } from "src/app/models";
 import { generator, parser, tokenizer, transformer } from "../../helpers";
 
@@ -18,7 +19,7 @@ export enum CompilerState {
 export class CompilerComponent implements OnInit {
   url = "https://video.google.in:80/videoplay?lang=en#00h02m30s";
   CompilerState = CompilerState;
-  currentState = CompilerState.IDLE;
+  currentState$ = new BehaviorSubject(CompilerState.IDLE);
   tokens!: AstNode[];
   startCompile = false;
   ast!: Ast;
@@ -34,6 +35,8 @@ export class CompilerComponent implements OnInit {
     return node;
   }
 }`;
+
+  constructor(private cdRef: ChangeDetectorRef) {}
 
   ngOnInit() {
     this.compileUrl();
@@ -57,7 +60,9 @@ export class CompilerComponent implements OnInit {
   }
 
   setState(state: CompilerState) {
+    this.currentState$.next(CompilerState.RESET);
+    this.cdRef.detectChanges();
     this.compileUrl();
-    this.currentState = state;
+    this.currentState$.next(state);
   }
 }

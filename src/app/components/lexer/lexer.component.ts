@@ -25,6 +25,7 @@ export class LexerComponent implements OnInit, AfterViewInit {
   tokens: any;
   tokenArray = [];
   scannerPos = 0;
+  verticalPos = 0;
   scannedTokens = [];
   @ViewChild("lexer", { static: false }) lexerElem!: ElementRef<any>;
   @ViewChildren("tokenElem") tokenElems!: QueryList<ElementRef>;
@@ -38,21 +39,28 @@ export class LexerComponent implements OnInit, AfterViewInit {
   }
 
   scan() {
-    const tokens: any = document.querySelectorAll(".tokenText");
-    const scanner: any = document.querySelector(".scanner");
+    const tokens = document.querySelectorAll(".tokenText");
+    const scanner = <HTMLElement>document.querySelector(".scanner");
+    const container = <HTMLElement>document.querySelector(".parent");
+    const containerRect = container?.getBoundingClientRect();
     const tl = new TimelineLite();
 
     tokens.forEach((token: Element) => {
       const rect = token.getBoundingClientRect();
+      const currentVertPos = rect.y - containerRect.y;
+      if (currentVertPos > this.verticalPos) {
+        this.scannerPos = 0;
+      }
 
       tl.fromTo(
         scanner,
         0.1,
-        { left: this.scannerPos, opacity: 1 },
-        { left: this.scannerPos + rect.width }
+        { left: this.scannerPos, opacity: 1, top: currentVertPos },
+        { left: this.scannerPos + rect.width, top: currentVertPos }
       );
 
       this.scannerPos += rect.width;
+      this.verticalPos = currentVertPos;
       const cln = <Element>token.cloneNode(true);
       cln.classList.add("clone");
       tl.to(cln, 1, { opacity: 1 });
@@ -65,20 +73,24 @@ export class LexerComponent implements OnInit, AfterViewInit {
     const btnArr: Element[] = this.tokenArray.map(
       (btn: ElementRef<any>) => btn.nativeElement
     );
-    console.log(btnArr);
 
     const coord = this.lexerElem.nativeElement.getBoundingClientRect();
-    let x = 0;
+    let x = coord.x;
+    let y = coord.y;
     TweenMax.staggerFromTo(
       btnArr,
       1,
       {
-        x: coord.x,
-        y: -100,
+        x,
+        y,
         opacity: 0,
       },
       {
-        y: 0,
+        y: (index: number, target: any) => {
+          const currentY = y;
+          y += target.getBoundingClientRect().height;
+          return target.getBoundingClientRect().height;
+        },
         x: (index: number, target: any) => {
           const currentX = x;
           x += target.getBoundingClientRect().width + 10;
@@ -92,7 +104,7 @@ export class LexerComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     // this.tokenArray = this.tokenElems.toArray();
-    this.tween();
+    // this.tween();
     this.scan();
   }
 }
